@@ -41,3 +41,4 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     this.languageService.setLanguage(languageCode);
   }
 }
+
