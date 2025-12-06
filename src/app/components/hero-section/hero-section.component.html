@@ -8,11 +8,13 @@
     loop
     playsinline
     preload="auto"
-    controls
+    [poster]="heroImage"
     (loadeddata)="onVideoLoaded()"
-    (error)="onVideoError()">
-    <!-- Test with known working video -->
-    <source src="/assets/videos/temple-background.mp4" type="video/mp4">
+    (error)="onVideoError()"
+    aria-hidden="true"
+    tabindex="-1">
+    <!-- Single MP4 video source -->
+    <source src="assets/videos/temple-background.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 

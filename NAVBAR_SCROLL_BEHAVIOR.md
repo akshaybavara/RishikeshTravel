@@ -93,3 +93,5 @@ Update the visible state colors in `navbar.component.scss`:
 This creates a modern, professional scrolling experience where the navbar elegantly reveals itself as users engage with the content.
 
 
+
+
