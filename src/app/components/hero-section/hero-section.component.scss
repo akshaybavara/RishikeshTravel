@@ -1,0 +1,79 @@
+.hero-section {
+  min-height: 100vh;
+  position: relative;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+
+  // Temporary debugging - make video visible
+  border: 2px solid red;
+
+  // Professional video styling
+  filter: brightness(0.7) contrast(1.1) saturate(1.2);
+  transform: scale(1.05); // Slight zoom for better coverage
+
+  // Ensure video loads smoothly
+  will-change: transform;
+
+  // Mobile optimization
+  @media (max-width: 768px) {
+    transform: scale(1.1); // More zoom on mobile for better coverage
+  }
+}
+
+.hero-fallback {
+  z-index: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+// Enhanced overlay for better text readability
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 64, 175, 0.4) 0%,
+    rgba(249, 115, 22, 0.3) 50%,
+    rgba(30, 64, 175, 0.4) 100%
+  );
+  z-index: 2;
+}
+
+.cta-button {
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+  }
+}
+
+// Content positioning
+.hero-section .relative.z-10 {
+  position: relative;
+  z-index: 10;
+}
+
+// Scroll indicator
+.absolute.bottom-10 {
+  position: absolute;
+  bottom: 2.5rem;
+  z-index: 10;
+}
+
+
+
+

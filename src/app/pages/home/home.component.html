@@ -1,0 +1,93 @@
+
+<app-navbar></app-navbar>
+
+<app-hero-section></app-hero-section>
+
+
+<!-- Featured Activities -->
+<section class="py-16 bg-white" appScrollAnimation [animationType]="'fade-in'" [delay]="200">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12" appScrollAnimation [animationType]="'slide-up'" [delay]="300">
+      <h2 class="text-4xl font-bold mb-4 text-gray-800">Featured Activities</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Discover the best experiences Rishikesh has to offer</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div *ngFor="let activity of featuredActivities; let i = index"
+           class="activity-card group cursor-pointer"
+           appScrollAnimation
+           [animationType]="'slide-up'"
+           [delay]="400 + (i * 100)">
+        <div class="relative overflow-hidden rounded-xl h-64 mb-4">
+          <img [src]="activity.image" [alt]="activity.title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+            <div class="text-white">
+              <mat-icon class="text-4xl mb-2">{{ activity.icon }}</mat-icon>
+              <h3 class="text-xl font-bold">{{ activity.title }}</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-center">{{ activity.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Popular Tours -->
+<section class="py-16 bg-gray-50" appScrollAnimation [animationType]="'fade-in'" [delay]="100">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12" appScrollAnimation [animationType]="'slide-up'" [delay]="200">
+      <h2 class="text-4xl font-bold mb-4 text-gray-800">Popular Tours</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Most booked tours by our travelers</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <app-tour-card *ngFor="let tour of popularTours; let i = index"
+                     [tour]="tour"
+                     appScrollAnimation
+                     [animationType]="'scale-in'"
+                     [delay]="300 + (i * 150)">
+      </app-tour-card>
+    </div>
+
+    <div class="text-center mt-12" appScrollAnimation [animationType]="'slide-up'" [delay]="600">
+      <a routerLink="/tours" mat-raised-button class="bg-gradient-himalayan text-white px-8 py-3">
+        View All Tours
+        <mat-icon class="ml-2">arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-16 bg-white" appScrollAnimation [animationType]="'fade-in'" [delay]="100">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12" appScrollAnimation [animationType]="'slide-up'" [delay]="200">
+      <h2 class="text-4xl font-bold mb-4 text-gray-800">Why Choose Us</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">We make your Rishikesh adventure unforgettable</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let feature of whyChooseUs; let i = index"
+           class="text-center p-6 rounded-lg hover:shadow-soft transition-all duration-300"
+           appScrollAnimation
+           [animationType]="i % 2 === 0 ? 'slide-in-left' : 'slide-in-right'"
+           [delay]="300 + (i * 100)">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-himalayan rounded-full flex items-center justify-center">
+          <mat-icon class="text-white text-3xl">{{ feature.icon }}</mat-icon>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ feature.title }}</h3>
+        <p class="text-gray-600">{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-testimonials></app-testimonials>
+
+<app-cta-section></app-cta-section>
+
+<app-newsletter></app-newsletter>
+
+<app-footer></app-footer>
+

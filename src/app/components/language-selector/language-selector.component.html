@@ -1,0 +1,33 @@
+<button
+  mat-button
+  [matMenuTriggerFor]="languageMenu"
+  class="language-selector-btn"
+  [attr.aria-label]="'Current language: ' + currentLanguage.name">
+  <mat-icon class="language-icon">language</mat-icon>
+  <span class="language-display">
+    <span class="language-flag">{{ currentLanguage.flag }}</span>
+    <span class="language-code">{{ currentLanguage.code.toUpperCase() }}</span>
+  </span>
+</button>
+
+<mat-menu #languageMenu="matMenu" class="language-menu">
+  <div class="language-menu-header">
+    <span class="menu-title">Select Language</span>
+  </div>
+
+  <button
+    mat-menu-item
+    *ngFor="let language of languages"
+    (click)="selectLanguage(language.code)"
+    [class.selected]="language.code === currentLanguage.code"
+    class="language-option">
+    <div class="language-option-content">
+      <span class="language-flag">{{ language.flag }}</span>
+      <div class="language-details">
+        <span class="language-name">{{ language.name }}</span>
+        <span class="language-native">{{ language.nativeName }}</span>
+      </div>
+    </div>
+    <mat-icon *ngIf="language.code === currentLanguage.code" class="check-icon">check</mat-icon>
+  </button>
+</mat-menu>

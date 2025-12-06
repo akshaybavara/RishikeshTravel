@@ -1,0 +1,72 @@
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Select Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" [min]="minDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="bookingForm.get('date')?.hasError('required')">Date is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Number of Participants</mat-label>
+      <input matInput type="number" formControlName="participants" min="1" max="20">
+      <mat-icon matPrefix>people</mat-icon>
+      <mat-error *ngIf="bookingForm.get('participants')?.hasError('required')">Required</mat-error>
+      <mat-error *ngIf="bookingForm.get('participants')?.hasError('min')">Minimum 1 participant</mat-error>
+      <mat-error *ngIf="bookingForm.get('participants')?.hasError('max')">Maximum 20 participants</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-icon matPrefix>person</mat-icon>
+      <mat-error *ngIf="bookingForm.get('name')?.hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-icon matPrefix>email</mat-icon>
+      <mat-error *ngIf="bookingForm.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="bookingForm.get('email')?.hasError('email')">Invalid email</mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phone" placeholder="10 digit mobile number">
+    <mat-icon matPrefix>phone</mat-icon>
+    <mat-error *ngIf="bookingForm.get('phone')?.hasError('required')">Phone is required</mat-error>
+    <mat-error *ngIf="bookingForm.get('phone')?.hasError('pattern')">Invalid phone number</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Special Requests (Optional)</mat-label>
+    <textarea matInput formControlName="specialRequests" rows="3"></textarea>
+  </mat-form-field>
+
+  <div class="bg-gray-50 p-6 rounded-lg">
+    <div class="flex justify-between items-center mb-4">
+      <span class="text-lg font-semibold">Total Price:</span>
+      <span class="text-2xl font-bold text-himalayan-blue">₹{{ totalPrice }}</span>
+    </div>
+    <p class="text-sm text-gray-600">Price per person: ₹{{ tour.price }}</p>
+  </div>
+
+  <button 
+    type="submit" 
+    mat-raised-button 
+    class="w-full bg-gradient-himalayan text-white text-lg py-3"
+    [disabled]="!bookingForm.valid">
+    <mat-icon>payment</mat-icon>
+    Proceed to Payment
+  </button>
+</form>
+
+
+
+
+

@@ -1,0 +1,73 @@
+<div class="min-h-screen bg-gradient-sky flex items-center justify-center py-16 px-4">
+  <mat-card class="max-w-md w-full p-8">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
+      <p class="text-gray-600">Join us for amazing adventures</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="registerForm.get('name')?.hasError('required')">Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('email')">Invalid email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phone" placeholder="10 digit number">
+        <mat-icon matPrefix>phone</mat-icon>
+        <mat-error *ngIf="registerForm.get('phone')?.hasError('required')">Phone is required</mat-error>
+        <mat-error *ngIf="registerForm.get('phone')?.hasError('pattern')">Invalid phone number</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Please confirm password</mat-error>
+        <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch')">Passwords do not match</mat-error>
+      </mat-form-field>
+
+      <div *ngIf="errorMessage" class="text-red-600 text-sm mb-4">
+        {{ errorMessage }}
+      </div>
+
+      <button 
+        type="submit" 
+        mat-raised-button 
+        class="w-full bg-gradient-himalayan text-white text-lg py-3"
+        [disabled]="!registerForm.valid">
+        Sign Up
+      </button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <p class="text-gray-600">
+        Already have an account?
+        <a routerLink="/auth/login" class="text-himalayan-blue font-semibold ml-1">Sign In</a>
+      </p>
+    </div>
+  </mat-card>
+</div>
+
+
+
+
+

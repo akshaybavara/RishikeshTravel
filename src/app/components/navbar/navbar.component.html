@@ -1,0 +1,90 @@
+<mat-toolbar class="navbar fixed top-0 z-50 w-full">
+  <div class="container mx-auto px-4 flex items-center justify-between w-full min-w-0">
+    <a routerLink="/home" class="flex items-center space-x-3 flex-shrink-0 min-w-0">
+      <!-- Logo -->
+      <div class="logo-container flex-shrink-0">
+        <img 
+          src="/assets/logo/logo.svg" 
+          alt="Rishikesh Gateway Logo" 
+          class="logo-img"
+          (error)="onLogoError($event)">
+        <!-- Fallback Icon if logo image not found -->
+        <div #logoFallback class="logo-fallback" style="display: none;">
+          <mat-icon>terrain</mat-icon>
+        </div>
+      </div>
+      <!-- Title -->
+      <span class="navbar-title text-2xl font-bold bg-gradient-to-r from-himalayan-blue to-himalayan-orange bg-clip-text">
+        Rishikesh Gateway
+      </span>
+    </a>
+
+    <!-- Desktop Menu - Hidden on Mobile/Tablet -->
+    <nav class="hidden lg:flex items-center space-x-6">
+      <a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
+      <a routerLink="/tours" routerLinkActive="active" class="nav-link">Tours</a>
+      <a routerLink="/about" routerLinkActive="active" class="nav-link">About</a>
+      <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- Currency Selector, Language Selector, User Menu - Visible on All Devices -->
+    <div class="flex items-center space-x-2 lg:space-x-4">
+      <app-currency-selector class="mr-2"></app-currency-selector>
+      <app-language-selector class="mr-2"></app-language-selector>
+
+      <ng-container *ngIf="currentUser$ | async as user">
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-btn">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <div class="px-4 py-3 border-b">
+            <p class="font-semibold text-gray-800">{{ user.name }}</p>
+            <p class="text-sm text-gray-600">{{ user.email }}</p>
+          </div>
+          <button mat-menu-item (click)="logout()" class="text-gray-700">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+          <button mat-menu-item routerLink="/dashboard" class="text-gray-700">
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+    </div>
+
+    <!-- Mobile/Tablet Menu Button - Hidden on Desktop -->
+    <button mat-icon-button class="mobile-menu-btn lg:hidden" (click)="toggleMenu()">
+      <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div *ngIf="isMenuOpen" class="mobile-menu-overlay lg:hidden" (click)="toggleMenu()">
+    <div class="mobile-menu" (click)="$event.stopPropagation()">
+      <nav class="space-y-1">
+        <a routerLink="/home" (click)="toggleMenu()" class="nav-link-mobile">Home</a>
+        <a routerLink="/tours" (click)="toggleMenu()" class="nav-link-mobile">Tours</a>
+        <a routerLink="/about" (click)="toggleMenu()" class="nav-link-mobile">About</a>
+        <a routerLink="/contact" (click)="toggleMenu()" class="nav-link-mobile">Contact</a>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-200 my-4"></div>
+
+        <!-- Auth buttons for mobile -->
+        <ng-container *ngIf="currentUser$ | async as user; else mobileLoginButtons">
+          <a routerLink="/dashboard" (click)="toggleMenu()" class="nav-link-mobile">Dashboard</a>
+          <button (click)="logout(); toggleMenu()" class="nav-link-mobile text-left w-full">
+            <mat-icon class="mr-3">logout</mat-icon>
+            Logout
+          </button>
+        </ng-container>
+        <ng-template #mobileLoginButtons>
+          <a routerLink="/auth/login" (click)="toggleMenu()" class="nav-link-mobile">Login</a>
+          <a routerLink="/auth/register" (click)="toggleMenu()" class="nav-link-mobile">Sign Up</a>
+        </ng-template>
+      </nav>
+    </div>
+  </div>
+</mat-toolbar>
+

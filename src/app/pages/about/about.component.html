@@ -1,0 +1,140 @@
+<app-navbar></app-navbar>
+
+<div class="min-h-screen bg-gray-50 pt-24">
+  <!-- Hero Section -->
+  <section class="bg-gradient-himalayan text-white py-20" appScrollAnimation [animationType]="'fade-in'" [delay]="100">
+    <div class="container mx-auto px-4 text-center" appScrollAnimation [animationType]="'slide-up'" [delay]="300">
+      <h1 class="text-5xl font-bold mb-6">About Rishikesh Gateway</h1>
+      <p class="text-xl max-w-3xl mx-auto">Your trusted partner for unforgettable adventures in the spiritual capital of India</p>
+    </div>
+  </section>
+
+  <!-- Mission & Story -->
+  <section class="py-16 bg-white" appScrollAnimation [animationType]="'fade-in'" [delay]="100">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8 text-center text-gray-800" appScrollAnimation [animationType]="'slide-up'" [delay]="200">Our Story</h2>
+        <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
+          <p appScrollAnimation [animationType]="'slide-in-left'" [delay]="300">
+            Founded in 2010, Rishikesh Gateway has been at the forefront of adventure tourism in the Himalayas.
+            What started as a small local operation has grown into one of the most trusted travel companies in Uttarakhand.
+          </p>
+          <p appScrollAnimation [animationType]="'slide-in-right'" [delay]="400">
+            Our mission is to provide authentic, safe, and memorable experiences that showcase the natural beauty,
+            spiritual significance, and adventure opportunities that Rishikesh has to offer. We believe in sustainable
+            tourism that benefits both travelers and the local community.
+          </p>
+          <p appScrollAnimation [animationType]="'slide-in-left'" [delay]="500">
+            Over the years, we have served thousands of travelers from around the world, helping them discover the magic
+            of Rishikesh through river rafting, camping, yoga retreats, and spiritual experiences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rishikesh Culture -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12 text-center text-gray-800">Rishikesh - The Yoga Capital</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <mat-card class="p-6">
+          <mat-icon class="text-5xl text-himalayan-blue mb-4">temple_hindu</mat-icon>
+          <h3 class="text-xl font-semibold mb-3">Spiritual Heritage</h3>
+          <p class="text-gray-600">
+            Rishikesh is known as the "Gateway to the Himalayas" and is one of the holiest places in India. 
+            The city is famous for its ancient temples, ashrams, and the sacred Ganges River.
+          </p>
+        </mat-card>
+        <mat-card class="p-6">
+          <mat-icon class="text-5xl text-himalayan-orange mb-4">self_improvement</mat-icon>
+          <h3 class="text-xl font-semibold mb-3">Yoga & Meditation</h3>
+          <p class="text-gray-600">
+            As the Yoga Capital of the World, Rishikesh attracts thousands of yoga enthusiasts and spiritual seekers 
+            from around the globe every year.
+          </p>
+        </mat-card>
+        <mat-card class="p-6">
+          <mat-icon class="text-5xl text-himalayan-blue mb-4">terrain</mat-icon>
+          <h3 class="text-xl font-semibold mb-3">Adventure Hub</h3>
+          <p class="text-gray-600">
+            From white water rafting to trekking, Rishikesh offers endless adventure opportunities in the lap of the Himalayas.
+          </p>
+        </mat-card>
+        <mat-card class="p-6">
+          <mat-icon class="text-5xl text-himalayan-orange mb-4">nature</mat-icon>
+          <h3 class="text-xl font-semibold mb-3">Natural Beauty</h3>
+          <p class="text-gray-600">
+            Surrounded by mountains and forests, Rishikesh is a paradise for nature lovers and photographers.
+          </p>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12 text-center text-gray-800">Our Values</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div *ngFor="let value of values" class="text-center p-6">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-himalayan rounded-full flex items-center justify-center">
+            <mat-icon class="text-white text-3xl">{{ value.icon }}</mat-icon>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{{ value.title }}</h3>
+          <p class="text-gray-600">{{ value.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12 text-center text-gray-800">Certifications & Awards</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <mat-card class="p-6 text-center">
+          <mat-icon class="text-5xl text-himalayan-blue mb-4">verified</mat-icon>
+          <h3 class="text-lg font-semibold mb-2">ISO Certified</h3>
+          <p class="text-gray-600 text-sm">Quality management certified</p>
+        </mat-card>
+        <mat-card class="p-6 text-center">
+          <mat-icon class="text-5xl text-himalayan-orange mb-4">emoji_events</mat-icon>
+          <h3 class="text-lg font-semibold mb-2">Best Tour Operator</h3>
+          <p class="text-gray-600 text-sm">Uttarakhand Tourism Award 2023</p>
+        </mat-card>
+        <mat-card class="p-6 text-center">
+          <mat-icon class="text-5xl text-himalayan-blue mb-4">security</mat-icon>
+          <h3 class="text-lg font-semibold mb-2">Safety Certified</h3>
+          <p class="text-gray-600 text-sm">Adventure Sports Authority approved</p>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-16 bg-white" appScrollAnimation [animationType]="'fade-in'" [delay]="100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12 text-center text-gray-800" appScrollAnimation [animationType]="'slide-up'" [delay]="200">Meet Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <mat-card *ngFor="let member of teamMembers; let i = index"
+                  class="text-center p-6 hover:shadow-soft transition-all duration-300"
+                  appScrollAnimation
+                  [animationType]="'scale-in'"
+                  [delay]="300 + (i * 150)">
+          <img [src]="member.image" [alt]="member.name" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+          <h3 class="text-xl font-semibold mb-2">{{ member.name }}</h3>
+          <p class="text-himalayan-blue font-medium mb-2">{{ member.role }}</p>
+          <p class="text-sm text-gray-600 mb-2">{{ member.experience }} experience</p>
+          <p class="text-gray-600 text-sm">{{ member.bio }}</p>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>
+
+
+
+

@@ -1,0 +1,46 @@
+<section class="hero-section relative h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Video -->
+  <video
+    #heroVideo
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    (loadeddata)="onVideoLoaded()"
+    (error)="onVideoError()">
+    <!-- Test with known working video -->
+    <source src="/assets/videos/temple-background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Fallback Background Image -->
+  <div
+    class="hero-fallback absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+    [class.opacity-0]="videoLoaded"
+    [class.opacity-100]="!videoLoaded"
+    [style.background-image]="'url(' + heroImage + ')'">
+  </div>
+
+  <div class="absolute inset-0 bg-gradient-to-r from-deep-blue/70 to-himalayan-orange/50"></div>
+
+  <div class="relative z-10 container mx-auto px-4 text-center text-white animate-fade-in">
+    <h1 class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg">
+      Discover Rishikesh
+    </h1>
+    <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto drop-shadow-md">
+      Adventure, Spirituality, and Serenity in the Heart of the Himalayas
+    </p>
+    <a routerLink="/tours" mat-raised-button class="cta-button bg-himalayan-orange text-white text-lg px-8 py-4">
+      Book Your Adventure
+      <mat-icon class="ml-2">arrow_forward</mat-icon>
+    </a>
+  </div>
+
+  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <mat-icon class="text-white text-4xl">keyboard_arrow_down</mat-icon>
+  </div>
+</section>
+

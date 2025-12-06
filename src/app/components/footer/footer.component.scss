@@ -1,0 +1,92 @@
+.social-icon {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background-color: #374151 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #4B5563 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 10 !important;
+  margin: 0 2px;
+
+  &:hover {
+    background-color: #3B82F6 !important;
+    border-color: #3B82F6 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  }
+
+  mat-icon {
+    font-size: 24px !important;
+    color: #ffffff !important;
+    display: block !important;
+    font-family: 'Material Icons' !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+  }
+
+  // Ensure visibility
+  &:focus {
+    outline: 2px solid #3B82F6;
+    outline-offset: 2px;
+  }
+}
+
+// Ensure footer container doesn't hide icons
+.footer {
+  position: relative;
+  z-index: 1;
+
+  .container {
+    position: relative;
+    z-index: 5;
+  }
+}
+
+// Override any global styles that might hide icons
+::ng-deep .footer .social-icon mat-icon {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-family: 'Material Icons' !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important;
+  direction: ltr !important;
+}
+
+// Additional fallback for icon visibility
+.social-icon::after {
+  display: none; // Hide any pseudo-elements that might interfere
+}
+
+// Social icons container
+.social-icons-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+}
+
+// Force icon rendering
+.social-icon mat-icon::before {
+  content: attr(data-icon) !important;
+  font-family: 'Material Icons' !important;
+}
+
+
+
+

@@ -1,0 +1,127 @@
+<app-navbar></app-navbar>
+
+<div class="min-h-screen bg-gray-50 pt-24 pb-16">
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">My Dashboard</h1>
+
+    <mat-tab-group class="dashboard-tabs">
+      <!-- Upcoming Bookings -->
+      <mat-tab label="Upcoming Bookings">
+        <div class="py-8">
+          <div *ngIf="upcomingBookings.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <mat-card *ngFor="let booking of upcomingBookings" class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-semibold">{{ booking.tourTitle }}</h3>
+                <span [class]="'px-3 py-1 rounded-full text-sm font-semibold ' + getStatusColor(booking.status)">
+                  {{ booking.status | titlecase }}
+                </span>
+              </div>
+              <div class="space-y-2 text-gray-600 mb-4">
+                <div class="flex items-center">
+                  <mat-icon class="text-sm mr-2">calendar_today</mat-icon>
+                  <span>{{ booking.date }}</span>
+                </div>
+                <div class="flex items-center">
+                  <mat-icon class="text-sm mr-2">people</mat-icon>
+                  <span>{{ booking.participants }} participants</span>
+                </div>
+                <div class="flex items-center">
+                  <mat-icon class="text-sm mr-2">payment</mat-icon>
+                  <span>₹{{ booking.totalPrice }}</span>
+                </div>
+              </div>
+              <button 
+                *ngIf="booking.status === 'pending' || booking.status === 'confirmed'"
+                mat-stroked-button 
+                color="warn"
+                (click)="cancelBooking(booking.id)">
+                Cancel Booking
+              </button>
+            </mat-card>
+          </div>
+          <div *ngIf="upcomingBookings.length === 0" class="text-center py-16">
+            <mat-icon class="text-6xl text-gray-400 mb-4">event_busy</mat-icon>
+            <p class="text-gray-600">No upcoming bookings</p>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Past Bookings -->
+      <mat-tab label="Past Bookings">
+        <div class="py-8">
+          <div *ngIf="pastBookings.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <mat-card *ngFor="let booking of pastBookings" class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-semibold">{{ booking.tourTitle }}</h3>
+                <span [class]="'px-3 py-1 rounded-full text-sm font-semibold ' + getStatusColor(booking.status)">
+                  {{ booking.status | titlecase }}
+                </span>
+              </div>
+              <div class="space-y-2 text-gray-600">
+                <div class="flex items-center">
+                  <mat-icon class="text-sm mr-2">calendar_today</mat-icon>
+                  <span>{{ booking.date }}</span>
+                </div>
+                <div class="flex items-center">
+                  <mat-icon class="text-sm mr-2">people</mat-icon>
+                  <span>{{ booking.participants }} participants</span>
+                </div>
+                <div class="flex items-center">
+                  <mat-icon class="text-sm mr-2">payment</mat-icon>
+                  <span>₹{{ booking.totalPrice }}</span>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+          <div *ngIf="pastBookings.length === 0" class="text-center py-16">
+            <mat-icon class="text-6xl text-gray-400 mb-4">history</mat-icon>
+            <p class="text-gray-600">No past bookings</p>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Profile -->
+      <mat-tab label="Profile">
+        <div class="py-8 max-w-2xl">
+          <mat-card class="p-6">
+            <h2 class="text-2xl font-bold mb-6">My Profile</h2>
+            <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+              <mat-form-field appearance="outline" class="w-full mb-4">
+                <mat-label>Full Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-icon matPrefix>person</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full mb-4">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+                <mat-icon matPrefix>email</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-full mb-6">
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phone">
+                <mat-icon matPrefix>phone</mat-icon>
+              </mat-form-field>
+
+              <button 
+                type="submit" 
+                mat-raised-button 
+                class="bg-gradient-himalayan text-white"
+                [disabled]="!profileForm.valid">
+                Update Profile
+              </button>
+            </form>
+          </mat-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+
+

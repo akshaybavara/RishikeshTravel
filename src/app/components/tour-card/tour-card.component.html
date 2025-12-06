@@ -1,0 +1,50 @@
+<mat-card class="tour-card h-full flex flex-col hover:shadow-glow transition-all duration-300">
+  <div class="relative overflow-hidden rounded-t-lg">
+    <img [src]="tour.images[0]" [alt]="tour.title" class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
+      <mat-icon class="text-yellow-500 text-sm">star</mat-icon>
+      <span class="text-sm font-semibold">{{ tour.rating }}</span>
+    </div>
+    <div class="absolute top-4 left-4 bg-himalayan-orange text-white px-3 py-1 rounded-full text-sm font-semibold">
+      {{ tour.category | titlecase }}
+    </div>
+  </div>
+
+  <mat-card-content class="flex-grow p-6">
+    <h3 class="text-xl font-bold mb-2 text-gray-800">{{ tour.title }}</h3>
+    <p class="text-gray-600 mb-4 line-clamp-2">{{ tour.description }}</p>
+    
+    <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+      <div class="flex items-center space-x-1">
+        <mat-icon class="text-sm">schedule</mat-icon>
+        <span>{{ tour.duration }}</span>
+      </div>
+      <div class="flex items-center space-x-1">
+        <mat-icon class="text-sm">location_on</mat-icon>
+        <span>{{ tour.location }}</span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <span class="text-2xl font-bold text-himalayan-blue">{{ formattedPrice }}</span>
+        <span class="text-gray-500 text-sm">/person</span>
+      </div>
+      <div class="text-sm text-gray-600">
+        <mat-icon class="text-sm align-middle">people</mat-icon>
+        {{ tour.reviewsCount }} reviews
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="p-6 pt-0">
+    <a [routerLink]="['/tours', tour.id]" mat-raised-button class="w-full bg-gradient-himalayan text-white">
+      View Details
+      <mat-icon class="ml-2">arrow_forward</mat-icon>
+    </a>
+  </mat-card-actions>
+</mat-card>
+
+
+
+

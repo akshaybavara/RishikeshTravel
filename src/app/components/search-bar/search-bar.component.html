@@ -1,0 +1,35 @@
+<div class="search-bar-container bg-white rounded-2xl shadow-soft p-6 md:p-8">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Search Tours</mat-label>
+      <input matInput [(ngModel)]="searchData.keyword" placeholder="Enter keywords...">
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Select Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="searchData.date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="searchData.category">
+        <mat-option *ngFor="let cat of categories" [value]="cat.value">
+          {{ cat.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button class="bg-gradient-himalayan text-white h-14" (click)="onSearch()">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </div>
+</div>
+
+
+
+
+

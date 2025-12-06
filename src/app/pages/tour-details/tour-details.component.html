@@ -1,0 +1,155 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="tour" class="min-h-screen bg-gray-50 pt-24">
+  <!-- Hero Banner -->
+  <div class="relative h-96 bg-gradient-to-r from-deep-blue to-himalayan-orange">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="relative z-10 container mx-auto px-4 h-full flex items-end pb-8">
+      <div class="text-white">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ tour.title }}</h1>
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center">
+            <mat-icon>star</mat-icon>
+            <span class="ml-1">{{ tour.rating }} ({{ tour.reviewsCount }} reviews)</span>
+          </div>
+          <div class="flex items-center">
+            <mat-icon>location_on</mat-icon>
+            <span class="ml-1">{{ tour.location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Image Gallery -->
+        <app-image-slider [images]="tour.images"></app-image-slider>
+
+        <!-- Description -->
+        <mat-card class="p-6">
+          <h2 class="text-2xl font-bold mb-4">About This Tour</h2>
+          <p class="text-gray-700 leading-relaxed">{{ tour.description }}</p>
+        </mat-card>
+
+        <!-- Itinerary -->
+        <mat-card class="p-6">
+          <h2 class="text-2xl font-bold mb-4 flex items-center">
+            <mat-icon class="mr-2">route</mat-icon>
+            Itinerary
+          </h2>
+          <ul class="space-y-3">
+            <li *ngFor="let item of tour.itinerary; let i = index" class="flex items-start">
+              <span class="flex-shrink-0 w-8 h-8 bg-gradient-himalayan text-white rounded-full flex items-center justify-center font-semibold mr-4">
+                {{ i + 1 }}
+              </span>
+              <span class="text-gray-700">{{ item }}</span>
+            </li>
+          </ul>
+        </mat-card>
+
+        <!-- Includes & Excludes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <mat-card class="p-6">
+            <h3 class="text-xl font-bold mb-4 text-green-600 flex items-center">
+              <mat-icon class="mr-2">check_circle</mat-icon>
+              Includes
+            </h3>
+            <ul class="space-y-2">
+              <li *ngFor="let item of tour.includes" class="flex items-center text-gray-700">
+                <mat-icon class="text-green-500 text-sm mr-2">check</mat-icon>
+                {{ item }}
+              </li>
+            </ul>
+          </mat-card>
+
+          <mat-card class="p-6">
+            <h3 class="text-xl font-bold mb-4 text-red-600 flex items-center">
+              <mat-icon class="mr-2">cancel</mat-icon>
+              Excludes
+            </h3>
+            <ul class="space-y-2">
+              <li *ngFor="let item of tour.excludes" class="flex items-center text-gray-700">
+                <mat-icon class="text-red-500 text-sm mr-2">close</mat-icon>
+                {{ item }}
+              </li>
+            </ul>
+          </mat-card>
+        </div>
+
+        <!-- Reviews -->
+        <mat-card class="p-6" *ngIf="reviews.length > 0">
+          <h2 class="text-2xl font-bold mb-6">Customer Reviews</h2>
+          <div class="space-y-6">
+            <div *ngFor="let review of reviews" class="border-b pb-6 last:border-0">
+              <div class="flex items-center mb-3">
+                <img [src]="review.image" [alt]="review.name" class="w-12 h-12 rounded-full mr-4">
+                <div class="flex-grow">
+                  <h4 class="font-semibold">{{ review.name }}</h4>
+                  <div class="flex text-yellow-500">
+                    <mat-icon *ngFor="let _ of getStars(review.rating)" class="text-sm">star</mat-icon>
+                  </div>
+                </div>
+                <span class="text-sm text-gray-500">{{ review.date }}</span>
+              </div>
+              <p class="text-gray-700">{{ review.comment }}</p>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <mat-card class="sticky top-24 p-6">
+          <div class="text-center mb-6">
+            <div class="text-4xl font-bold text-himalayan-blue mb-2">{{ formattedPrice }}</div>
+            <div class="text-gray-600">per person</div>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Duration:</span>
+              <span class="font-semibold">{{ tour.duration }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Difficulty:</span>
+              <mat-chip class="capitalize">{{ tour.difficulty }}</mat-chip>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Max Participants:</span>
+              <span class="font-semibold">{{ tour.maxParticipants }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Category:</span>
+              <mat-chip class="capitalize">{{ tour.category }}</mat-chip>
+            </div>
+          </div>
+
+          <a 
+            [routerLink]="['/booking', tour.id]" 
+            mat-raised-button 
+            class="w-full bg-gradient-himalayan text-white text-lg py-3 mb-4">
+            <mat-icon>book_online</mat-icon>
+            Book Now
+          </a>
+
+          <button 
+            mat-stroked-button 
+            class="w-full"
+            (click)="shareTour()">
+            <mat-icon>share</mat-icon>
+            Share Tour
+          </button>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+

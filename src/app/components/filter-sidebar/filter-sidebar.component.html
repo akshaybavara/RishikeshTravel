@@ -1,0 +1,75 @@
+<aside class="filter-sidebar bg-white rounded-lg shadow-soft p-6 sticky top-24">
+  <h3 class="text-xl font-bold mb-6 flex items-center">
+    <mat-icon class="mr-2">filter_list</mat-icon>
+    Filters
+  </h3>
+
+  <!-- Price Range -->
+  <div class="mb-6">
+    <h4 class="font-semibold mb-4">Price Range</h4>
+    <mat-slider
+      [min]="0"
+      [max]="10000"
+      [step]="500"
+      [discrete]="true"
+      [displayWith]="formatPrice"
+      [(ngModel)]="filters.priceRange"
+      (ngModelChange)="applyFilters()">
+      <input matSliderStartThumb>
+      <input matSliderEndThumb>
+    </mat-slider>
+    <div class="flex justify-between text-sm text-gray-600 mt-2">
+      <span>₹{{ filters.priceRange[0] }}</span>
+      <span>₹{{ filters.priceRange[1] }}</span>
+    </div>
+  </div>
+
+  <!-- Duration -->
+  <div class="mb-6">
+    <h4 class="font-semibold mb-4">Duration</h4>
+    <div class="space-y-2">
+      <label *ngFor="let duration of durations" class="flex items-center">
+        <mat-checkbox
+          [checked]="selectedDurations[duration]"
+          (change)="onDurationChange(duration, $event.checked)">
+        </mat-checkbox>
+        <span class="ml-2">{{ duration }}</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Category -->
+  <div class="mb-6">
+    <h4 class="font-semibold mb-4">Category</h4>
+    <div class="space-y-2">
+      <label *ngFor="let cat of categories" class="flex items-center">
+        <mat-checkbox
+          [checked]="selectedCategories[cat]"
+          (change)="onCategoryChange(cat, $event.checked)">
+        </mat-checkbox>
+        <span class="ml-2 capitalize">{{ cat }}</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Rating -->
+  <div class="mb-6">
+    <h4 class="font-semibold mb-4">Minimum Rating</h4>
+    <mat-slider
+      [min]="0"
+      [max]="5"
+      [step]="0.5"
+      [discrete]="true"
+      [(ngModel)]="filters.rating"
+      (ngModelChange)="applyFilters()">
+      <input matSliderThumb>
+    </mat-slider>
+    <div class="text-sm text-gray-600 mt-2">{{ filters.rating }}+ stars</div>
+  </div>
+
+  <button mat-stroked-button class="w-full" (click)="resetFilters()">
+    <mat-icon>refresh</mat-icon>
+    Reset Filters
+  </button>
+</aside>
+

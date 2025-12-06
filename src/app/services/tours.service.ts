@@ -1,0 +1,183 @@
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Tour } from '../models/tour.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ToursService {
+  private tours: Tour[] = [
+    {
+      id: '1',
+      title: 'Ganga River Rafting Adventure',
+      price: 2500,
+      duration: '3 hours',
+      images: [
+        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+        'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800',
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800'
+      ],
+      description: 'Experience the thrill of white water rafting on the holy Ganges. Navigate through exciting rapids while enjoying the scenic beauty of Rishikesh.',
+      itinerary: [
+        'Meet at our office at 8:00 AM',
+        'Safety briefing and equipment distribution',
+        'Transport to starting point',
+        '3-hour rafting session with professional guides',
+        'Return to base and refreshments'
+      ],
+      category: 'rafting',
+      rating: 4.8,
+      reviewsCount: 234,
+      location: 'Rishikesh, Uttarakhand',
+      difficulty: 'medium',
+      maxParticipants: 8,
+      includes: ['Rafting equipment', 'Safety gear', 'Professional guide', 'Refreshments'],
+      excludes: ['Transportation to meeting point', 'Personal expenses']
+    },
+    {
+      id: '2',
+      title: 'Himalayan Camping Experience',
+      price: 3500,
+      duration: '2 days 1 night',
+      images: [
+        'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800',
+        'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
+        'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800'
+      ],
+      description: 'Camp under the stars in the beautiful Himalayan foothills. Enjoy bonfire, stargazing, and wake up to breathtaking mountain views.',
+      itinerary: [
+        'Day 1: Arrival at campsite, setup, evening bonfire',
+        'Day 2: Sunrise yoga, breakfast, nature walk, departure'
+      ],
+      category: 'camping',
+      rating: 4.9,
+      reviewsCount: 189,
+      location: 'Near Rishikesh, Uttarakhand',
+      difficulty: 'easy',
+      maxParticipants: 20,
+      includes: ['Tent accommodation', 'All meals', 'Bonfire', 'Yoga session'],
+      excludes: ['Sleeping bags (available for rent)', 'Personal items']
+    },
+    {
+      id: '3',
+      title: 'Yoga & Meditation Retreat',
+      price: 4500,
+      duration: '3 days 2 nights',
+      images: [
+        'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800',
+        'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800',
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800'
+      ],
+      description: 'Rejuvenate your mind, body, and soul with our comprehensive yoga and meditation retreat in the spiritual capital of India.',
+      itinerary: [
+        'Day 1: Arrival, welcome session, evening meditation',
+        'Day 2: Morning yoga, breakfast, philosophy session, afternoon practice, evening aarti',
+        'Day 3: Sunrise yoga, breakfast, closing ceremony'
+      ],
+      category: 'yoga',
+      rating: 4.7,
+      reviewsCount: 156,
+      location: 'Rishikesh, Uttarakhand',
+      difficulty: 'easy',
+      maxParticipants: 15,
+      includes: ['Accommodation', 'All meals', 'Yoga sessions', 'Meditation classes', 'Ganga Aarti'],
+      excludes: ['Yoga mats (available for rent)', 'Personal items']
+    },
+    {
+      id: '4',
+      title: 'Ganga Aarti Experience',
+      price: 500,
+      duration: '1 hour',
+      images: [
+        'https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=800',
+        'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800',
+        'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800'
+      ],
+      description: 'Witness the divine Ganga Aarti ceremony at Triveni Ghat. A spiritual experience that will touch your soul.',
+      itinerary: [
+        'Arrive at Triveni Ghat by 6:00 PM',
+        'Find seating (first come, first served)',
+        'Witness the beautiful aarti ceremony',
+        'Participate in the prayers and rituals'
+      ],
+      category: 'aarti',
+      rating: 4.9,
+      reviewsCount: 567,
+      location: 'Triveni Ghat, Rishikesh',
+      difficulty: 'easy',
+      maxParticipants: 100,
+      includes: ['Guided experience', 'Information about the ceremony'],
+      excludes: ['Transportation', 'Food']
+    },
+    {
+      id: '5',
+      title: 'Himalayan Trekking Adventure',
+      price: 5500,
+      duration: '4 days 3 nights',
+      images: [
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800',
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800'
+      ],
+      description: 'Trek through the majestic Himalayas, explore remote villages, and witness stunning mountain vistas.',
+      itinerary: [
+        'Day 1: Arrival and briefing',
+        'Day 2: Start trek, reach first camp',
+        'Day 3: Continue trek, explore villages',
+        'Day 4: Return journey, departure'
+      ],
+      category: 'trekking',
+      rating: 4.6,
+      reviewsCount: 98,
+      location: 'Himalayan Range, Uttarakhand',
+      difficulty: 'hard',
+      maxParticipants: 12,
+      includes: ['Guide', 'Accommodation', 'All meals', 'Trekking equipment'],
+      excludes: ['Personal gear', 'Travel insurance']
+    },
+    {
+      id: '6',
+      title: 'Adventure Combo Package',
+      price: 6500,
+      duration: '3 days 2 nights',
+      images: [
+        'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+        'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800',
+        'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800'
+      ],
+      description: 'Complete adventure package including rafting, camping, and yoga. Perfect for thrill-seekers!',
+      itinerary: [
+        'Day 1: Rafting adventure, evening camping setup',
+        'Day 2: Morning yoga, nature activities, bonfire',
+        'Day 3: Ganga Aarti visit, departure'
+      ],
+      category: 'adventure',
+      rating: 4.8,
+      reviewsCount: 203,
+      location: 'Rishikesh, Uttarakhand',
+      difficulty: 'medium',
+      maxParticipants: 16,
+      includes: ['All activities', 'Accommodation', 'All meals', 'Equipment'],
+      excludes: ['Personal items', 'Transportation']
+    }
+  ];
+
+  listTours(): Observable<Tour[]> {
+    return of(this.tours);
+  }
+
+  getTourById(id: string): Observable<Tour | undefined> {
+    const tour = this.tours.find(t => t.id === id);
+    return of(tour);
+  }
+
+  getToursByCategory(category: string): Observable<Tour[]> {
+    const filtered = this.tours.filter(t => t.category === category);
+    return of(filtered);
+  }
+}
+
+
+
+
+

@@ -1,0 +1,38 @@
+<div class="image-slider relative rounded-lg overflow-hidden">
+  <div class="relative h-96 md:h-[500px]">
+    <img 
+      [src]="images[currentIndex]" 
+      [alt]="'Image ' + (currentIndex + 1)"
+      class="w-full h-full object-cover transition-opacity duration-500">
+    
+    <button 
+      *ngIf="images.length > 1"
+      mat-icon-button 
+      class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+      (click)="prev()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    
+    <button 
+      *ngIf="images.length > 1"
+      mat-icon-button 
+      class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+      (click)="next()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+    <div *ngIf="images.length > 1" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <button
+        *ngFor="let img of images; let i = index"
+        [class.active]="i === currentIndex"
+        class="indicator"
+        (click)="goTo(i)">
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+

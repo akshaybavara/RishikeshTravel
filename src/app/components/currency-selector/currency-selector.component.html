@@ -1,0 +1,34 @@
+<button
+  mat-button
+  [matMenuTriggerFor]="currencyMenu"
+  class="currency-selector-btn"
+  [attr.aria-label]="'Current currency: ' + currentCurrency.code + ' ' + currentCurrency.symbol">
+  <mat-icon class="currency-icon">attach_money</mat-icon>
+  <span class="currency-display">
+    <span class="currency-flag">{{ currentCurrency.flag }}</span>
+    <span class="currency-code">{{ currentCurrency.code }}</span>
+  </span>
+</button>
+
+<mat-menu #currencyMenu="matMenu" class="currency-menu">
+  <div class="currency-menu-header">
+    <span class="menu-title">Select Currency</span>
+  </div>
+
+  <button
+    mat-menu-item
+    *ngFor="let currency of currencies"
+    (click)="selectCurrency(currency.code)"
+    [class.selected]="currency.code === currentCurrency.code"
+    class="currency-option">
+    <div class="currency-option-content">
+      <span class="currency-flag">{{ currency.flag }}</span>
+      <div class="currency-details">
+        <span class="currency-name">{{ currency.name }}</span>
+        <span class="currency-symbol">{{ currency.symbol }}</span>
+      </div>
+    </div>
+    <mat-icon *ngIf="currency.code === currentCurrency.code" class="check-icon">check</mat-icon>
+  </button>
+</mat-menu>
+

@@ -1,0 +1,105 @@
+<section class="newsletter-section py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-himalayan-blue to-himalayan-orange rounded-full mb-6 shadow-lg">
+          <mat-icon class="text-white text-2xl">email</mat-icon>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Stay Connected
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Get exclusive travel deals, adventure tips, and Rishikesh insights delivered to your inbox weekly.
+        </p>
+      </div>
+
+      <!-- Newsletter Card -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <!-- Left Content -->
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Never Miss an Adventure</h3>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center">
+                <mat-icon class="text-himalayan-blue text-sm mr-3">check_circle</mat-icon>
+                Exclusive adventure deals
+              </li>
+              <li class="flex items-center">
+                <mat-icon class="text-himalayan-blue text-sm mr-3">check_circle</mat-icon>
+                Local insights and tips
+              </li>
+              <li class="flex items-center">
+                <mat-icon class="text-himalayan-blue text-sm mr-3">check_circle</mat-icon>
+                Seasonal offers and events
+              </li>
+              <li class="flex items-center">
+                <mat-icon class="text-himalayan-blue text-sm mr-3">check_circle</mat-icon>
+                Travel planning guides
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter Form -->
+          <div class="space-y-6">
+            <div>
+              <label for="newsletter-email" class="block text-sm font-medium text-gray-700 mb-2">
+                Email Address
+              </label>
+              <div class="relative">
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  [(ngModel)]="email"
+                  placeholder="Enter your email address"
+                  class="newsletter-input w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-himalayan-blue focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-500"
+                  [class.border-red-300]="email && !isValidEmail(email)"
+                  [class.focus:ring-red-500]="email && !isValidEmail(email)">
+                <mat-icon class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">email</mat-icon>
+              </div>
+              <p *ngIf="email && !isValidEmail(email)" class="mt-1 text-sm text-red-600">
+                Please enter a valid email address
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="newsletter-subscribe-btn w-full bg-gradient-to-r from-himalayan-blue to-himalayan-orange text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              (click)="subscribe()"
+              [disabled]="!email || !isValidEmail(email) || isSubmitting">
+              <span class="flex items-center justify-center">
+                <mat-icon *ngIf="!isSubmitting" class="mr-2">send</mat-icon>
+                <span *ngIf="isSubmitting" class="animate-spin mr-2">⏳</span>
+                {{ isSubmitting ? 'Subscribing...' : 'Subscribe Now' }}
+              </span>
+            </button>
+
+            <!-- Status Messages -->
+            <div class="min-h-[2rem]">
+              <div *ngIf="successMessage" class="flex items-center text-green-600 text-sm">
+                <mat-icon class="text-sm mr-2">check_circle</mat-icon>
+                {{ successMessage }}
+              </div>
+              <div *ngIf="errorMessage" class="flex items-center text-red-600 text-sm">
+                <mat-icon class="text-sm mr-2">error</mat-icon>
+                {{ errorMessage }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+          <p class="text-sm text-gray-500">
+            Join <span class="font-semibold text-himalayan-blue">15,000+</span> happy travelers.
+            <span class="text-gray-400 ml-2">Unsubscribe anytime • No spam</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
