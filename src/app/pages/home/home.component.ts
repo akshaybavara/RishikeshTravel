@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'Ganga Aarti',
       icon: 'local_fire_department',
-      image: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=400',
+      image: 'https://images.unsplash.com/photo-1716573260891-23ad993e8833?w=400',
       description: 'Spiritual evening ceremony'
     }
   ];
