@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'River Rafting',
       icon: 'waves',
-      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400',
+      image: 'https://images.unsplash.com/photo-1627920417441-08aae3a5a3aa?w=400',
       description: 'Thrilling white water adventure'
     },
     {
