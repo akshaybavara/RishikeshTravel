@@ -49,6 +49,41 @@
   z-index: 2;
 }
 
+// Language Button Styling - Same as Language Selector
+.language-selector-btn {
+  background: linear-gradient(135deg, #3B82F6 0%, #F97316 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+
+  &:hover {
+    background: linear-gradient(135deg, #2563EB 0%, #EA580C 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: white;
+    opacity: 0.9;
+  }
+}
+
 .cta-button {
   transition: all 0.3s ease;
   position: relative;
@@ -66,11 +101,43 @@
   z-index: 10;
 }
 
-// Scroll indicator
-.absolute.bottom-10 {
+// Enhanced Scroll Indicator
+.scroll-indicator {
   position: absolute;
   bottom: 2.5rem;
-  z-index: 10;
+  z-index: 20;
+  cursor: pointer;
+  animation: gentle-bounce 2s infinite;
+}
+
+.scroll-arrow {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  cursor: pointer;
+
+  &:hover {
+    color: #f3f4f6; // slightly brighter white on hover
+    transform: translateY(2px) scale(1.1);
+  }
+
+  &:active {
+    transform: translateY(4px) scale(0.95);
+  }
+}
+
+@keyframes gentle-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-8px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-4px) translateX(-50%);
+  }
 }
 
 

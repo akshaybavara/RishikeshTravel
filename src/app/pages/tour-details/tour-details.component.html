@@ -127,17 +127,17 @@
             </div>
           </div>
 
-          <a 
-            [routerLink]="['/booking', tour.id]" 
-            mat-raised-button 
-            class="w-full bg-gradient-himalayan text-white text-lg py-3 mb-4">
+          <a
+            [routerLink]="['/booking', tour.id]"
+            mat-raised-button
+            class="language-selector-btn w-full mb-4">
             <mat-icon>book_online</mat-icon>
             Book Now
           </a>
 
-          <button 
-            mat-stroked-button 
-            class="w-full"
+          <button
+            mat-raised-button
+            class="language-selector-btn share-tour-btn w-full"
             (click)="shareTour()">
             <mat-icon>share</mat-icon>
             Share Tour

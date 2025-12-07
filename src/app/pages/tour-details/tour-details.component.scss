@@ -1,5 +1,53 @@
 // Component styles
 
+// Language Button Styling - Same as Language Selector
+.language-selector-btn {
+  background: linear-gradient(135deg, #3B82F6 0%, #F97316 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+
+  &:hover {
+    background: linear-gradient(135deg, #2563EB 0%, #EA580C 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: white;
+    opacity: 0.9;
+  }
+}
+
+// Professional gradient for Share Tour button
+.language-selector-btn.share-tour-btn {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  box-shadow: 0 4px 16px rgba(30, 64, 175, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+  }
+}
+
+
 
 
 

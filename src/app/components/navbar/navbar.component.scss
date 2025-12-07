@@ -93,23 +93,37 @@
     }
   }
 
-  // User menu button
+  // User menu button - Same as Language Button
   .user-menu-btn {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: linear-gradient(135deg, #3B82F6 0%, #F97316 100%);
+    color: white;
+    border: none;
     border-radius: 10px;
-    padding: 6px;
-    transition: all 0.3s ease;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
-      background: rgba(59, 130, 246, 0.15);
-      border-color: rgba(59, 130, 246, 0.3);
-      transform: scale(1.05);
+      background: linear-gradient(135deg, #2563EB 0%, #EA580C 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
 
     mat-icon {
-      color: #3B82F6;
-      font-size: 24px;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: white;
+      opacity: 0.9;
     }
   }
 

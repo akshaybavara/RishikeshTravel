@@ -91,6 +91,28 @@ export class HeroSectionComponent implements OnInit, OnDestroy, AfterViewInit {
     console.error('🎬 onVideoError called');
     this.videoLoaded = false;
   }
+
+  scrollToNextSection() {
+    // Find the next section after hero
+    const nextSection = document.querySelector('section:not(.hero-section)') ||
+                       document.querySelector('app-tours') ||
+                       document.querySelector('app-about') ||
+                       document.querySelector('app-contact') ||
+                       document.querySelector('footer');
+
+    if (nextSection) {
+      nextSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      // Fallback: scroll down by viewport height
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      });
+    }
+  }
 }
 
 

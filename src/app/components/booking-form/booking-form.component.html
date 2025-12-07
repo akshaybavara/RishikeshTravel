@@ -56,15 +56,16 @@
     <p class="text-sm text-gray-600">Price per person: ₹{{ tour.price }}</p>
   </div>
 
-  <button 
-    type="submit" 
-    mat-raised-button 
-    class="w-full bg-gradient-himalayan text-white text-lg py-3"
+  <button
+    type="submit"
+    mat-raised-button
+    class="language-selector-btn w-full"
     [disabled]="!bookingForm.valid">
     <mat-icon>payment</mat-icon>
     Proceed to Payment
   </button>
 </form>
+
 
 
 

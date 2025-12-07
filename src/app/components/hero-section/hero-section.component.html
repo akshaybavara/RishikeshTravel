@@ -35,14 +35,15 @@
     <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto drop-shadow-md">
       Adventure, Spirituality, and Serenity in the Heart of the Himalayas
     </p>
-    <a routerLink="/tours" mat-raised-button class="cta-button bg-himalayan-orange text-white text-lg px-8 py-4">
+    <a routerLink="/tours" mat-raised-button class="language-selector-btn">
+      <mat-icon>explore</mat-icon>
       Book Your Adventure
       <mat-icon class="ml-2">arrow_forward</mat-icon>
     </a>
   </div>
 
-  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <mat-icon class="text-white text-4xl">keyboard_arrow_down</mat-icon>
+  <div class="scroll-indicator absolute bottom-10 left-1/2 transform -translate-x-1/2" (click)="scrollToNextSection()">
+    <mat-icon class="scroll-arrow">keyboard_arrow_down</mat-icon>
   </div>
 </section>
 

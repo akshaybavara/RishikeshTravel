@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,7 +22,7 @@ export class NavbarComponent {
   isMenuOpen = false;
   currentUser$;
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private router: Router) {
     this.currentUser$ = this.authService.currentUser$;
   }
 
@@ -40,6 +40,7 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 }
 
